@@ -8,10 +8,10 @@ RUN apt-get update && \
     curl \
     git \
     libssl-dev
-ENV PATH=$PATH:~/.cargo/bin
+ENV PATH=$PATH:/root/.cargo/bin
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN /root/.cargo/bin/rustup toolchain install nightly
-RUN /root/.cargo/bin/rustup run nightly cargo install watchexec
+RUN rustup toolchain install nightly
+RUN rustup run nightly cargo install watchexec
 RUN DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
 	DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
 	rm -rf \
